@@ -31,15 +31,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'age' => 'required|integer|min:0',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -69,15 +60,6 @@ class UserController extends Controller
      */
     public function update(Request $request, string $uuid)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'string|max:255',
-            'email' => 'string|email|max:255|unique:users',
-            'age' => 'integer|min:0',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
         $user = User::findOrFail($uuid);
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);

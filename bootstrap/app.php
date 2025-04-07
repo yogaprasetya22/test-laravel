@@ -14,16 +14,13 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         // Mendaftarkan middleware global
+        $middleware->prepend(\App\Http\Middleware\ValidateUserInput::class);
         $middleware->append(LogRequest::class);
+
 
         // Untuk grup API
         $middleware->api(append: [
             LogRequest::class,
-        ]);
-
-        // Mendaftarkan alias untuk digunakan di route
-        $middleware->alias([
-            'log.request' => LogRequest::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
