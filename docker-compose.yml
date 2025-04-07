@@ -1,4 +1,24 @@
 services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: crud-laravel-app
+        restart: unless-stopped
+        volumes:
+            - ./:/var/www/html
+        ports:
+            - "8000:80"
+        environment:
+            - DB_CONNECTION=pgsql
+            - DB_HOST=db
+            - DB_PORT=5432
+            - DB_DATABASE=crud-laravel-db
+            - DB_USERNAME=jagres
+            - DB_PASSWORD=Jagres112.
+        depends_on:
+            - db
+
     db:
         image: postgres:16.4
         container_name: crud-laravel-db
