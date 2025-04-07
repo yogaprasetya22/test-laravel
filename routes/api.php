@@ -13,8 +13,7 @@ Route::get('/db-check', function () {
     }
 });
 
-Route::apiResource('users', UserController::class);
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/users', [UserController::class, 'index']);
+Route::post('/users', [UserController::class, 'store']);
+Route::patch('/users/{uuid}', [UserController::class, 'update']);
+Route::delete('/users/{uuid}', [UserController::class, 'destroy']);
