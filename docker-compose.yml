@@ -1,0 +1,15 @@
+services:
+    db:
+        image: postgres:16.4
+        container_name: crud-laravel-db
+        environment:
+            POSTGRES_USER: jagres
+            POSTGRES_PASSWORD: Jagres112.
+            POSTGRES_DB: crud-laravel-db
+        volumes:
+            - db-data:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+
+volumes:
+    db-data:
