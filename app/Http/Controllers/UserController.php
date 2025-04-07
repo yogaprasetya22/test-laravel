@@ -44,7 +44,11 @@ class UserController extends Controller
      */
     public function show(string $uuid)
     {
-        //
+        $user = User::findOrFail($uuid);
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+        return response()->json($user, 200);
     }
 
     /**

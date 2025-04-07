@@ -14,6 +14,7 @@ Route::get('/db-check', function () {
 });
 
 Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{uuid}', [UserController::class, 'show']);
 Route::post('/users', [UserController::class, 'store']);
 Route::patch('/users/{uuid}', [UserController::class, 'update']);
 Route::delete('/users/{uuid}', [UserController::class, 'destroy']);
